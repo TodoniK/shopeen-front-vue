@@ -1,21 +1,18 @@
-import type {ReferentielQuestion} from "./ReferentielQuestion";
-import {TAB_QUIZ} from "../referentiel/listeInfosQuiz";
+import type {ReferentielQuestion} from "@/referentiel/ReferentielQuestion";
+import {TAB_QUIZ} from "@/referentiel/QuestionList";
 
 export class Question {
-    texte = '';
+    texte: string = '';
 
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
     constructor() {
     }
 
     getQuestionActuelle(tabQuestions: Array<ReferentielQuestion>, index: number){
-
         this.texte = tabQuestions[index].question;
-
         return this.texte;
     }
 
-    getIdFromQuestion(question: string){
+    getIdFromQuestion(question: any){
         let i = 0;
         let id = null;
 
@@ -27,7 +24,7 @@ export class Question {
             }
             i++
         }
-
         return id;
     }
+
 }

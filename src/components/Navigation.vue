@@ -1,20 +1,9 @@
 <template>
-  <div class="d-grid d-md-flex justify-content-md-end align-items-center">
-    <NumQuestion></NumQuestion>
-    <Bouton></Bouton>
-  </div>
+  <button class="btn btn-primary">Bouton</button>
 </template>
 
-<script lang="ts">
-import NumQuestion from "@/components/NumQuestion.vue";
-import Bouton from "@/components/Bouton.vue";
-
+<script>
 export default {
-  // eslint-disable-next-line vue/multi-word-component-names
-  name: 'Navigation',
-  components: {
-    NumQuestion,
-    Bouton
-  }
-}
+  // Comportement du composant Bouton
+};
 </script>

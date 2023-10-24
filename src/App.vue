@@ -1,19 +1,17 @@
 <template>
   <div class="col-12 bg-gray2" id="App">
-
-    <Quiz></Quiz>
-
+    <HomepageSwitcher></HomepageSwitcher>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Quiz from "@/components/Quiz.vue";
+import HomepageSwitcher from "./components/HomepageSwitcher.vue";
 
 export default defineComponent({
   name: 'App',
   components: {
-    Quiz
+    HomepageSwitcher
   }
 });
 </script>

@@ -1,37 +1,67 @@
-<script lang="ts">
-import Mesure from "@/components/Mesure.vue";
-import {mapState} from "vuex";
-import {Bilan} from "@/models/Bilan";
-import store from "@/store";
-import {TAB_REFERENTIELS} from "@/referentiel/listeReferentiels";
-
-let bilan = new Bilan()
-
-export default {
-  name: 'BilanMesure',
-  components: {
-    Mesure
-  },
-  props: ['qtMesure'],
-  computed: mapState(['storeQuizIndex']),
-  watch: {
-    storeQuizIndex() {
-      bilan.calculerBilans(TAB_REFERENTIELS, store.state.storeTabReponses)
-    }
-  }
-}
-</script>
-
-<style>
-
-</style>
-
 <template>
   <div id="mesures" class="row pb-5 px-2" style="align-items: center">
-      <Mesure nom-mesure="Consommation énergétique" :qt-mesure="this.$store.state.storeBilanEnergy" unite-mesure="kwH"></Mesure>
-      <Mesure nom-mesure="Consommation carbonique" :qt-mesure="this.$store.state.storeBilanCO2" unite-mesure="kgeqCO2"></Mesure>
-      <Mesure nom-mesure="Consommation économique" :qt-mesure="this.$store.state.storeBilanEco" unite-mesure="€"></Mesure>
+    <div class="col-md-4">
+      <Mesure
+          :nomMesure="'Consommation énergétique'"
+          :qtMesure="bilanEnergy"
+          :uniteMesure="'kwH'"
+      ></Mesure>
+    </div>
+    <div class="col-md-4">
+      <Mesure
+          :nomMesure="'Consommation carbonique'"
+          :qtMesure="bilanCO2"
+          :uniteMesure="'kgeqCO2'"
+      ></Mesure>
+    </div>
+    <div class="col-md-4">
+      <Mesure
+          :nomMesure="'Consommation économique'"
+          :qtMesure="bilanEco"
+          :uniteMesure="'€'"
+      ></Mesure>
+    </div>
   </div>
 </template>
 
+<script>
+import { computed, watch, onMounted } from "vue";
+import Mesure from "./Mesure.vue";
+import { useStore } from "vuex";
 
+export default {
+  components: {
+    Mesure,
+  },
+  setup() {
+    const store = useStore();
+    const storeBilan = computed(() => store.state.bilan);
+    const storeQuizIndex = computed(() => store.state.quizIndex);
+
+    let bilanEnergy = storeBilan.value.bilanKwh;
+    let bilanCO2 = storeBilan.value.bilanKgeqCO2;
+    let bilanEco = storeBilan.value.bilanEuro;
+
+    async function majAffichage() {
+      await storeBilan.value.majValeurs();
+      bilanEnergy = storeBilan.value.bilanKwh;
+      bilanCO2 = storeBilan.value.bilanKgeqCO2;
+      bilanEco = storeBilan.value.bilanEuro;
+    }
+
+    onMounted(() => {
+      majAffichage();
+    });
+
+    watch(storeQuizIndex, () => {
+      majAffichage();
+    });
+
+    return {
+      bilanEnergy,
+      bilanCO2,
+      bilanEco,
+    };
+  },
+};
+</script>

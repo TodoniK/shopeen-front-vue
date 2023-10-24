@@ -1,22 +1,23 @@
-import type {ReferentielQuestion} from "./ReferentielQuestion";
+import type {ReferentielQuestion} from "../referentiel/ReferentielQuestion";
+import {TAB_QUIZ} from "../referentiel/QuestionList";
 
 export class DomaineMesure {
-    etape = 0;
-    section = '';
 
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    etape: number = TAB_QUIZ[0].etape;
+    section: string = TAB_QUIZ[0].section;
+
     constructor() {
     }
 
-    private majEtape(quiz: Array<ReferentielQuestion>, index:number){
+    private majEtape(quiz: Array<ReferentielQuestion>, index: any){
         this.etape = quiz[index].etape;
     }
 
-    private majSection(quiz: Array<ReferentielQuestion>, index:number){
+    private majSection(quiz: Array<ReferentielQuestion>, index: any){
         this.section = quiz[index].section;
     }
 
-    majEtapeEtSection(quiz: Array<ReferentielQuestion>, index:number){
+    majEtapeEtSection(quiz: Array<ReferentielQuestion>, index: any){
         this.majEtape(quiz,index);
         this.majSection(quiz,index);
     }
