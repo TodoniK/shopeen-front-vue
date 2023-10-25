@@ -3,21 +3,21 @@
     <div class="col-md-4">
       <Mesure
           :nomMesure="'Consommation énergétique'"
-          :qtMesure="bilanEnergy"
+          :qtMesure=bilanEnergy.toString()
           :uniteMesure="'kwH'"
       ></Mesure>
     </div>
     <div class="col-md-4">
       <Mesure
           :nomMesure="'Consommation carbonique'"
-          :qtMesure="bilanCO2"
+          :qtMesure=bilanCO2.toString()
           :uniteMesure="'kgeqCO2'"
       ></Mesure>
     </div>
     <div class="col-md-4">
       <Mesure
           :nomMesure="'Consommation économique'"
-          :qtMesure="bilanEco"
+          :qtMesure=bilanEco.toString()
           :uniteMesure="'€'"
       ></Mesure>
     </div>

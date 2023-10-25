@@ -20,13 +20,6 @@
         >
           <div id="chart-container">
             <div v-if="isLoading">Remplissage des données</div>
-            <fusioncharts
-                v-else
-                :type="'timeseries'"
-                :width="'100%'"
-                :height="450"
-                :data-source="getChartConfig()"
-            />
             <p v-if="loadError" style="color: red">
               Quelque chose ne va pas {{ loadError.message }}
             </p>
@@ -39,17 +32,12 @@
 
 <script>
 import { ref, onMounted } from "vue";
-import VueFusionCharts from "vue-fusioncharts";
-import FusionCharts from "fusioncharts";
-import Timeseries from "fusioncharts/fusioncharts.timeseries";
 import Titre from "./Titre.vue";
 import ListeApp from "./ListeApp.vue";
 import { useStore } from "vuex";
 import { ApplicationRequest } from "@/API/ApplicationRequest";
-
-FusionCharts.addDep(Timeseries);
-
-VueFusionCharts.fcRoot(FusionCharts);
+import FusionCharts from "fusioncharts";
+import VueFusionCharts from "vue-fusioncharts";
 
 export default {
   components: {

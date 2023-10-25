@@ -25,7 +25,7 @@ export default {
     const section = ref("");
 
     const majAffichage = () => {
-      store.commit("majEtapeEtSection", { tabQuiz: TAB_QUIZ, quizIndex: store.state.quizIndex });
+      store.state.domaineMesure.majEtapeEtSection(TAB_QUIZ, store.state.quizIndex)
       etape.value = store.state.domaineMesure.etape;
       section.value = store.state.domaineMesure.section;
     };
